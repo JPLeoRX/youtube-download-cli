@@ -3,6 +3,8 @@ An elegant CLI tool built in Python that allows you to download videos from YouT
 
 # Usage
 I tried to keep it as basic as possible, after installation the tool can be accessed from terminal. You need to specify a YouTube URL for download. An optional mode to switch between video & audio (mp4 or mp3) downloads. And an optional output directory path. By default all downloaded files will be saved in current working directory from which you launched this script.
+
+This tool was tested on MacOS and Ubuntu, and probably won't work on Windows.
 ### Help
 ```bash
 leo@c6p2 ~ % youtube-download-cli -h
