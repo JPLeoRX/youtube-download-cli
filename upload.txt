@@ -1,0 +1,3 @@
+rm -r build dist youtube_download_cli.egg-info
+python setup.py sdist bdist_wheel && pip install .
+twine upload dist/*

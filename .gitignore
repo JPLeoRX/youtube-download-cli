@@ -1,7 +1,7 @@
 # Pip build files
 build
 dist
-tekleo_common_utils.egg-info
+youtube_download_cli.egg-info
 
 **/target/
 target/*
