@@ -3,6 +3,7 @@ import os
 import traceback
 from colorama import Fore, Style
 from pytube import YouTube
+from moviepy.audio.io.AudioFileClip import AudioFileClip
 
 
 def main():
@@ -62,11 +63,17 @@ def main():
                 print(Fore.RED + 'ERROR!' + Style.RESET_ALL + ' File already exists at "' + output_file_path + '" and we don\'t want to accidentally overwrite it')
                 raise FileExistsError()
 
-            # Download and rename to mp3
+            # Download mp4 and rename to mp3
             out_file = video.download(output_path=output_folder_path)
             base, ext = os.path.splitext(out_file)
             os.rename(out_file, base + '.mp3')
-            print(Fore.GREEN + 'SUCCESS!' + Style.RESET_ALL + ' Downloaded mp3 from "' + input_url + '" to "' + base + '.mp3' + '"')
+            print(Fore.GREEN + 'SUCCESS! 1/2' + Style.RESET_ALL + ' Downloaded mp3 from "' + input_url + '" to "' + base + '.mp3' + '"')
+
+            # Make sure we convert it to mp3
+            moviepy_clip = AudioFileClip(out_file)
+            moviepy_clip.write_audiofile(out_file, verbose=False, logger=None)
+            moviepy_clip.close()
+            print(Fore.GREEN + 'SUCCESS! 2/2' + Style.RESET_ALL + ' Converted "' + base + '.mp3' + '" to audio')
         except FileExistsError:
             exit(-1)
         except:
