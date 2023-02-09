@@ -10,7 +10,7 @@ setup_args = dict(
         'console_scripts': ['youtube-download-cli=youtube_download_cli.command_line:main'],
     },
     name='youtube-download-cli',
-    version='0.0.0.2',
+    version='0.0.0.3',
     description="",
     keywords=[],
     long_description=readme_text,
