@@ -27,7 +27,8 @@ setup_args = dict(
 install_requires = [
     'argparse',
     'colorama',
-    'pytube'
+    'pytube',
+    'moviepy'
 ]
 
 
