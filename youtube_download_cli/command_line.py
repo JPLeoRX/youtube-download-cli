@@ -64,16 +64,17 @@ def main():
                 raise FileExistsError()
 
             # Download mp4 and rename to mp3
-            out_file = video.download(output_path=output_folder_path)
-            base, ext = os.path.splitext(out_file)
-            os.rename(out_file, base + '.mp3')
-            print(Fore.GREEN + 'SUCCESS! 1/2' + Style.RESET_ALL + ' Downloaded mp3 from "' + input_url + '" to "' + base + '.mp3' + '"')
+            out_video_filepath = video.download(output_path=output_folder_path)
+            base, ext = os.path.splitext(out_video_filepath)
+            out_audio_filepath = base + '.mp3'
+            print(Fore.GREEN + 'SUCCESS! 1/2' + Style.RESET_ALL + ' Downloaded mp4 video from "' + input_url + '" to "' + out_video_filepath + '"')
 
             # Make sure we convert it to mp3
-            moviepy_clip = AudioFileClip(out_file)
-            moviepy_clip.write_audiofile(out_file, verbose=False, logger=None)
-            moviepy_clip.close()
-            print(Fore.GREEN + 'SUCCESS! 2/2' + Style.RESET_ALL + ' Converted "' + base + '.mp3' + '" to audio')
+            moviepy_audio_clip = AudioFileClip(out_video_filepath)
+            moviepy_audio_clip.write_audiofile(out_audio_filepath, verbose=False, logger=None)
+            moviepy_audio_clip.close()
+            os.remove(out_video_filepath)
+            print(Fore.GREEN + 'SUCCESS! 2/2' + Style.RESET_ALL + ' Converted to mp3 audio "' + out_audio_filepath + '"')
         except FileExistsError:
             exit(-1)
         except:
@@ -94,9 +95,8 @@ def main():
                 raise FileExistsError()
 
             # Download
-            out_file = video.download(output_path=output_folder_path)
-            base, ext = os.path.splitext(out_file)
-            print(Fore.GREEN + 'SUCCESS!' + Style.RESET_ALL + ' Downloaded mp4 from "' + input_url + '" to "' + base + ext + '"')
+            out_video_filepath = video.download(output_path=output_folder_path)
+            print(Fore.GREEN + 'SUCCESS! 1/1' + Style.RESET_ALL + ' Downloaded mp4 video from "' + input_url + '" to "' + out_video_filepath + '"')
         except FileExistsError:
             exit(-1)
         except:
